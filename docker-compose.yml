@@ -2,19 +2,25 @@ version: '2'
 volumes:
     sense-data:
 services:
-  influxdb:
-    restart: always
-    build: ./influxdb
-    volumes:
-      - 'sense-data:/data'
-  sensor:
+  # influxdb:
+  #   restart: always
+  #   build: ./influxdb
+  #   volumes:
+  #     - 'sense-data:/data'
+  # sensor:
+  #   build: ./sensor
+  #   privileged: true
+  #   restart: always
+  #   volumes:
+  #     - 'sense-data:/data'
+  # telegraf:
+  #   build: ./telegraf
+  #   restart: always
+  #   cap_add:
+  #     - SYS_ADMIN
+    python:
     build: ./sensor
     privileged: true
     restart: always
     volumes:
       - 'sense-data:/data'
-  telegraf:
-    build: ./telegraf
-    restart: always
-    cap_add:
-      - SYS_ADMIN
